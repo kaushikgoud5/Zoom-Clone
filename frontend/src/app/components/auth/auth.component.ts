@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl,Validators,ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -10,36 +12,58 @@ import { AuthService } from '../../auth.service';
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-loginReactiveForm:FormGroup;
-isLogin:boolean=true;
-constructor(private authService:AuthService){}
-ngOnInit(){
-  this.loginReactiveForm=new FormGroup({
-    email:new FormControl(null,[Validators.required,Validators.email]),
-    password: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(8),
-    ]),
-  })
-}
-SwitchMode(){
-  this.isLogin=!this.isLogin;
-}
-login(form:FormGroup){
-
-}
-signUp(form:FormGroup){
-  console.log(form);
-  const email=form.value['email'];
-  const password=form.value['password'];
-  const data:User={
-    email:email,
-    password:password
+  loginReactiveForm: FormGroup;
+  isLogin: boolean = true;
+  constructor(private authService: AuthService, private toastr: ToastrService,private router:Router) { }
+  ngOnInit() {
+    this.loginReactiveForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+    })
   }
-  // this.authService.
-}
-onClickLogin(loginReactiveForm:FormGroup){
-  this.isLogin?this.login(loginReactiveForm):this.signUp(loginReactiveForm);
-}
+  SwitchMode() {
+    this.isLogin = !this.isLogin;
+  }
+  login(form: FormGroup) {
+    const email = form.value['email'];
+    const password = form.value['password'];
+    const data = {
+      email: email,
+      password: password
+    }
+    this.authService.login(data).subscribe({
+      next:()=>{
+        this.toastr.success("Login Success");
+        this.router.navigate(['home/dashboard']);
+      },
+      error:()=>{
+        this.toastr.error("Login Failed");
+      }
+    })
+    form.reset();
+  }
+  signUp(form: FormGroup) {
+    const email = form.value['email'];
+    const password = form.value['password'];
+    const data = {
+      email: email,
+      password: password
+    }
+    this.authService.signUp(data).subscribe({
+      next:(res)=>{
+        this.toastr.success("Registered Successfully🚀🚀") ;
+      },
+      error:(err)=>{
+        this.toastr.error("Something is Gone Wrong🥲");
+      },
+    });
+    form.reset();
+  }
+  onClickLogin(loginReactiveForm: FormGroup) {
+    this.isLogin ? this.login(loginReactiveForm) : this.signUp(loginReactiveForm);
+  }
 
 }

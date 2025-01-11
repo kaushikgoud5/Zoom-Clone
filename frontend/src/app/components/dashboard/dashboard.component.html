@@ -15,7 +15,7 @@
 </div>
 <div class="dashboard-cards mx-3 mt-3">
   <div class="row justify-content-around ">
-    <div class="col-2 rounded-4 card p-2 card-1 " role="button">
+    <div class="col-2 rounded-4 card p-2 card-1 " role="button" (click)="onClickNewMeeting()">
       <img
         class="card-img w-25  "
         role="button"
@@ -90,3 +90,4 @@
     <app-card></app-card>
 </div>   
 </div>
+<app-modal [isModalActive]="isModalActive"></app-modal>

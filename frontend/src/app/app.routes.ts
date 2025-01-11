@@ -13,6 +13,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate:[()=>{return false}],
     children: [
       {
         path: 'dashboard',

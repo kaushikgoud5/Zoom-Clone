@@ -1,0 +1,45 @@
+<div class="modal" *ngIf="isModalActive">
+    <div class="modal-container" >
+      <form action="" [formGroup]="taskForm">
+        <h2 class="text-light">Create Meeting</h2>
+        <span role="button" (click)="onClickClose()" class="">❌</span>
+      <div class="modal-description">
+        <input type="text" placeholder=" Add description"  formControlName="description"/>
+        <!-- <div
+              *ngIf="
+                taskForm.get('description')?.invalid &&
+                taskForm.get('description')?.touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="taskForm.get('description')?.errors?.['required']"
+              >
+                Description cannot be empty
+              </small>
+            </div> -->
+      </div>
+      <div class="modal-description">
+        <label for="" class="text-light mt-2">Enter Date and Time</label>
+        <input type="time" placeholder=" Enter Date and Time"  formControlName="description"/>
+        <!-- <div
+              *ngIf="
+                taskForm.get('description')?.invalid &&
+                taskForm.get('description')?.touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="taskForm.get('description')?.errors?.['required']"
+              >
+                Description cannot be empty
+              </small>
+            </div> -->
+      </div>
+      <div class="mt-5">
+        <button class="btn btn-primary w-100 border-0" type="button" (click)="onClickContinue()">Continue</button>
+      </div>
+    </form>
+  </div>
+  
+  </div>
