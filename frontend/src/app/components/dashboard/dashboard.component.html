@@ -1,16 +1,16 @@
 
 <div class="dashboard-container mx-3 mt-3 p-5 rounded-4">
   <div class="row g-0">
-    <div class="col text-light">Upcoming Meeting at:12:30 PM</div>
+    <div class="col text-light">Upcoming Meeting at: {{upcomingMeetingTime | date : "hh:mm a"}}</div>
   </div>
   <div class="row mt-5 pt-3">
     <div class="col">
-      <h1 class="d-inline text-light fw-bold">12:04</h1>
-      <span class="text-light">PM</span>
+      <h1 class="d-inline text-light fw-bold">{{currentTime}}</h1>
+      <span class="text-light">{{period}}</span>
     </div>
   </div>
   <div class="row">
-    <div class="col text-light">Friday, 29 March 2024</div>
+    <div class="col text-light">{{currentDate}}</div>
   </div>
 </div>
 <div class="dashboard-cards mx-3 mt-3">
@@ -82,12 +82,11 @@
 <app-header>
   
 </app-header>
-<div class="row">
- <div class="col-6">
-    <app-card></app-card>
+<div class="container-fluid">
+  <div class="mb-4">
+    <div class="col-6 d-flex align-items-stretch">
+      <app-card class="w-100 d-flex  "></app-card>
+    </div>
+  </div>
 </div>
-<div class="col-6">
-    <app-card></app-card>
-</div>   
-</div>
-<app-modal [isModalActive]="isModalActive"></app-modal>
+<app-modal [isModalActive]="isModalActive" (dataChange)="updateModalStatus($event)" (dataChangeForMeetings)="updateMeetings($event)"></app-modal>

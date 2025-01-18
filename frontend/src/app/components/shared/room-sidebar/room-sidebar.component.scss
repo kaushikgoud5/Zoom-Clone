@@ -1,0 +1,33 @@
+.room-sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1050;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  }
+  .w-10{
+    width: 50px !important;
+  }
+
+  .sidebar-header {
+    padding: 5px;
+    background-color: #495057;
+  }
+  
+  .sidebar-body {
+    padding: 5px;
+    overflow-y: auto;
+  }
+  
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: #495057;
+  }
+  

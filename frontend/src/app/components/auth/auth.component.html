@@ -37,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <button class="border rounded-3 p-2 w-100 bg-primary border-0 text-light fs-6 fw-medium mt-3" (click)="onClickLogin(loginReactiveForm)" [disabled]="loginReactiveForm.invalid" role="button">
+          <button class="border rounded-3 p-2 w-100 bg-primary border-0 text-light fs-6 fw-medium mt-3" (click)="onClickLogin(loginReactiveForm)" [disabled]="loginReactiveForm.invalid" role="button" [ngStyle]="{'opacity': loginReactiveForm.invalid ? '0.6' : '1'}">
             CONTINUE
           </button>
         </div>

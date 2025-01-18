@@ -6,6 +6,7 @@ import { PreviousComponent } from './components/previous/previous.component';
 import { PersonalRoomComponent } from './components/personal-room/personal-room.component';
 import { RecordingsComponent } from './components/recordings/recordings.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RoomComponent } from './components/shared/room/room.component';
 
 export const routes: Routes = [
   { path: 'auth', component: AuthComponent },
@@ -13,7 +14,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate:[()=>{return false}],
+    canActivate:[()=>{return true}],
     children: [
       {
         path: 'dashboard',
@@ -37,4 +38,5 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'join/:id',component:RoomComponent}
 ];

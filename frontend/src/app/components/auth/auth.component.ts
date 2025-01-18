@@ -3,11 +3,12 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
@@ -57,7 +58,7 @@ export class AuthComponent {
         this.toastr.success("Registered Successfully🚀🚀") ;
       },
       error:(err)=>{
-        this.toastr.error("Something is Gone Wrong🥲");
+        this.toastr.error("Registered Failed");
       },
     });
     form.reset();

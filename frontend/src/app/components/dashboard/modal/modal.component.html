@@ -1,45 +1,59 @@
-<div class="modal" *ngIf="isModalActive">
-    <div class="modal-container" >
-      <form action="" [formGroup]="taskForm">
-        <h2 class="text-light">Create Meeting</h2>
-        <span role="button" (click)="onClickClose()" class="">❌</span>
-      <div class="modal-description">
-        <input type="text" placeholder=" Add description"  formControlName="description"/>
-        <!-- <div
-              *ngIf="
+<div class="modal show d-block" tabindex="-1" *ngIf="isModalActive">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary">Create Meeting</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onClickClose()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="taskForm">
+          <div class="mb-3">
+            <label for="Title" class="form-label">Title</label>
+            <input type="text" id="title" class="form-control" placeholder="Add Title"
+              formControlName="title" />
+            <div *ngIf="
+                taskForm.get('title')?.invalid &&
+                taskForm.get('title')?.touched
+              " class="text-danger mt-1">
+              <small *ngIf="taskForm.get('title')?.errors?.['required']">
+                Title cannot be empty
+              </small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" id="description" class="form-control" placeholder="Add description"
+              formControlName="description" />
+            <div *ngIf="
                 taskForm.get('description')?.invalid &&
                 taskForm.get('description')?.touched
-              "
-            >
-              <small
-                class="fs-10 validation"
-                *ngIf="taskForm.get('description')?.errors?.['required']"
-              >
+              " class="text-danger mt-1">
+              <small *ngIf="taskForm.get('description')?.errors?.['required']">
                 Description cannot be empty
               </small>
-            </div> -->
-      </div>
-      <div class="modal-description">
-        <label for="" class="text-light mt-2">Enter Date and Time</label>
-        <input type="time" placeholder=" Enter Date and Time"  formControlName="description"/>
-        <!-- <div
-              *ngIf="
-                taskForm.get('description')?.invalid &&
-                taskForm.get('description')?.touched
-              "
-            >
-              <small
-                class="fs-10 validation"
-                *ngIf="taskForm.get('description')?.errors?.['required']"
-              >
-                Description cannot be empty
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Enter Date and Time</label>
+            <input type="datetime-local" id="time" class="form-control" formControlName="time" />
+            <div *ngIf="
+                taskForm.get('time')?.invalid && taskForm.get('time')?.touched
+              " class="text-danger mt-1">
+              <small *ngIf="taskForm.get('time')?.errors?.['required']">
+                Time is required
               </small>
-            </div> -->
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="mt-5">
-        <button class="btn btn-primary w-100 border-0" type="button" (click)="onClickContinue()">Continue</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onClickClose()">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="createMeeting()">
+          Continue
+        </button>
       </div>
-    </form>
+    </div>
   </div>
-  
-  </div>
+</div>

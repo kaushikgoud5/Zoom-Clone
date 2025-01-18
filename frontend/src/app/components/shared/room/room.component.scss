@@ -1,0 +1,23 @@
+.room-container{
+    height: 100vh;
+    background-color: #161925;
+}
+.video-grid {
+    display: flex;
+    flex-wrap: wrap; /* Wrap videos to the next row if needed */
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Space between videos */
+    width: 100%;
+    height: 100%;
+  }
+  
+  .video-grid video {
+    flex: 1 1 calc(25% - 1rem); /* Adjust video width to fit 4 per row */
+    max-width: calc(25% - 1rem);
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

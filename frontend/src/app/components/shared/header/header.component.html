@@ -1,9 +1,9 @@
 <div class="row mx-3 mt-3">
     <div class="header d-flex justify-content-between text-light">
         <div class="fw-bold fs-4">
-            Today’s Upcoming Meetings
+            Today’s {{route==='dashboard' ? 'Upcoming' : route  | titlecase}} Meetings
         </div>
-        <div role="button">
+        <div role="button" (click)="onClickSeeAll()" *ngIf="route=='dashboard'">
             See all
         </div>
     </div>
