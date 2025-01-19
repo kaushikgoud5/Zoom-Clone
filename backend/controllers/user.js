@@ -14,7 +14,7 @@ async function handleUserSignup(req, res) {
 }
 async function handleUserLogin(req,res){
     try{
-        const { email, password } = req.body;
+        const { email, password  } = req.body;
         if (!email || !password) {
           return res.status(400).json({ error: "Email and password are required." });
       }
@@ -31,6 +31,7 @@ async function handleUserLogin(req,res){
       return res.status(200).json({
         message: "Login successful",
         token,
+        username: user.username
     }); 
     }
     catch{

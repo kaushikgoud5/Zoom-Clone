@@ -25,7 +25,11 @@
     <form action="" [formGroup]="loginReactiveForm">
       <div class="row mt-4">
         <div class="col">
-
+          <div *ngIf="!isLogin">
+            <label for="username" class="text-light fs-6">Username</label>
+            <input class="w-100 rounded-3 border-0 p-2 inp-bg text-light caret-blue" type="text" formControlName="username"
+            name="" id="" />
+          </div>
           <label for="email" class="text-light fs-6">Email Address</label>
           <input class="w-100 rounded-3 border-0 p-2 inp-bg text-light caret-blue" type="text" formControlName="email"
             name="" id="" />

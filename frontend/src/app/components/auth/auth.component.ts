@@ -23,6 +23,7 @@ export class AuthComponent {
         Validators.required,
         Validators.minLength(8),
       ]),
+      username:new FormControl(null),
     })
   }
   SwitchMode() {
@@ -36,8 +37,9 @@ export class AuthComponent {
       password: password
     }
     this.authService.login(data).subscribe({
-      next:()=>{
-        this.toastr.success("Login Success");
+      next:(data)=>{
+        console.log(data)
+        this.toastr.success(`Welcome to the Yoom , ${data['username']}👋`);
         this.router.navigate(['home/dashboard']);
       },
       error:()=>{
@@ -49,7 +51,9 @@ export class AuthComponent {
   signUp(form: FormGroup) {
     const email = form.value['email'];
     const password = form.value['password'];
+    const username = form.value['username'];
     const data = {
+      username : username,
       email: email,
       password: password
     }
