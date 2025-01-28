@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const { Server } = require("socket.io");
 const usersRouter = require("./routes/user");
+const config = require("./config");
 
-const PORT = 8000;
+const PORT = config.port;
 const app = express();
 
 const server = http.createServer(app);
@@ -21,12 +22,12 @@ app.use(express.json());
 app.use(cors());
 app.use(usersRouter);
 mongoose
-  .connect("mongodb://localhost:27017/usersDb")
+  .connect(config.db_uri)
   .then(() => {
     console.log("connected to db");
   })
-  .catch(() => {
-    console.log("error in connecting to DB");
+  .catch((err) => {
+    console.log("error in connecting to DB",err.message);
   });
 
   const users = {};
